@@ -1,3 +1,4 @@
+package Stack;
 public class Stack {
     private String[] arr; // Array to store stack elements
     private int top; // Index of the top element

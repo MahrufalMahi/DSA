@@ -30,16 +30,17 @@
 
             }
 
-            public void pop(){
+            public char pop(){
 
                 if(isEmpty() == true){
 
                     System.out.println("Stack empty");
-                    return;
+                    return '\0';
                 }
-
+                char temp = arr[this.top];
                 arr[this.top] = '\0';
                 this.top--;
+                return temp;
             }
 
             public boolean isEmpty(){
@@ -49,6 +50,36 @@
                 }
 
                 return false;
+            }
+
+            public boolean multiLevelIsBalanced(String exp){
+
+                Stack myStack = new Stack(exp.length());
+
+                for(int i = 0; i < exp.length(); i++){
+
+                    if(exp.charAt(i) == '(' || exp.charAt(i) == '{' || exp.charAt(i) == '['){
+
+                        myStack.push(exp.charAt(i));
+
+                    }else if(exp.charAt(i) == ')' || exp.charAt(i) == '}' || exp.charAt(i) == ']'){
+
+                        if(myStack.isEmpty() == false){
+
+                            char poppedItem = myStack.pop();
+                            if ((exp.charAt(i) == ')' && poppedItem != '(') ||
+                                (exp.charAt(i) == '}' && poppedItem != '{') ||
+                                (exp.charAt(i) == ']' && poppedItem != '[')) {
+                
+                                    return false; // Mismatched brackets
+                       }
+                        }
+
+                    }
+
+                }
+
+                return myStack.isEmpty();
             }
 
             public boolean isBalanced(String exp){
@@ -87,7 +118,7 @@
         public static void main(String[] args) {
             Stack_parentheses sp = new Stack_parentheses();
         
-            // Test cases
+            // Test cases for isBalanced method
             String[] testExpressions = {
                 "(())",        // Balanced
                 "()",          // Balanced
@@ -103,11 +134,33 @@
             };
         
             // Test each expression and print whether it's balanced
+            System.out.println("Testing isBalanced method:");
             for (String expression : testExpressions) {
-                // Create a new stack for each expression to avoid state retention
-                Stack_parentheses.Stack stack = sp.new Stack(expression.length());
+                if (sp.new Stack(expression.length()).isBalanced(expression)) {
+                    System.out.println("Expression: \"" + expression + "\" is balanced.");
+                } else {
+                    System.out.println("Expression: \"" + expression + "\" is not balanced.");
+                }
+            }
         
-                if (stack.isBalanced(expression)) {
+            // Additional test cases for multiLevelIsBalanced method
+            String[] multiLevelExpressions = {
+                "[{()}]",      // Balanced
+                "[(])",        // Not balanced
+                "{[()()]}",    // Balanced
+                "{[(])}",      // Not balanced
+                "((({{{[]}}}))", // Not balanced
+                "{}",          // Balanced
+                "[(]){",       // Not balanced
+                "[]{}()",      // Balanced
+                "[{]}",        // Not balanced
+                "[](){}",      // Balanced
+            };
+        
+            // Test each expression for multiLevelIsBalanced
+            System.out.println("\nTesting multiLevelIsBalanced method:");
+            for (String expression : multiLevelExpressions) {
+                if (sp.new Stack(expression.length()).multiLevelIsBalanced(expression)) {
                     System.out.println("Expression: \"" + expression + "\" is balanced.");
                 } else {
                     System.out.println("Expression: \"" + expression + "\" is not balanced.");

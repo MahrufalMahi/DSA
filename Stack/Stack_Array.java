@@ -1,11 +1,11 @@
-package Stack;
-public class Stack {
+
+public class Stack_Array {
     private String[] arr; // Array to store stack elements
     private int top; // Index of the top element
     private int capacity; // Maximum size of the stack
 
     // Constructor to initialize the stack
-    public Stack(int size) {
+    public Stack_Array(int size) {
         arr = new String[size];
         capacity = size;
         top = -1; // Stack is initially empty
@@ -42,7 +42,7 @@ public class Stack {
 
     // Main method for testing
     public static void main(String[] args) {
-        Stack stack = new Stack(5); // Create a stack of capacity 5
+        Stack_Array stack = new Stack_Array(5); // Create a stack of capacity 5
 
         stack.push("A"); // Push A
         stack.push("B"); // Push B

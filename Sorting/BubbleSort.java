@@ -4,8 +4,9 @@ public class BubbleSort {
 
     public static void bubbleSort(int[] arr){
 
+        boolean isSorted = false; //makes the sorting adaptive
         for(int i = 0; i < arr.length - 1; i++){
-
+            isSorted = true;
             for(int j = 0; j< arr.length - i -1; j++){
 
                 if(arr[j] > arr[j + 1]){
@@ -14,8 +15,13 @@ public class BubbleSort {
                     temp = arr[j];
                     arr[j] = arr[j + 1];
                     arr[j + 1] = temp;
+                    isSorted = false;
 
                 }
+            }
+
+            if(isSorted){
+                return;
             }
 
         }

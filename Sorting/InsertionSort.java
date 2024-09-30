@@ -2,22 +2,26 @@ import java.util.Arrays;
 
 public class InsertionSort {
 
-    public static void insertionSort(int[] arr){
 
-        for(int i = 1; i < arr.length - 1; i++){
+    public static void insertionSort(int arr[]){
 
-            int outsideSorted = arr[i];
+        for(int i = 1; i < arr.length; i++){
+
             int j = i-1;
-            while(j >= 0 && arr[j] > outsideSorted){
+            int outSideSortedArray = arr[i];
+
+            while(j >= 0 && arr[j] > outSideSortedArray){
 
                 arr[j+1] = arr[j];
                 j--;
 
             }
-            arr[j+1] = outsideSorted;
-           
+            arr[j+1] = outSideSortedArray;
         }
+
     }
+
+  
 
     public static void main(String[] args) {
         

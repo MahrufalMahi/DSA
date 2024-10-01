@@ -2,7 +2,22 @@
         
         public static int logarithmicPow(int x, int n){
 
+
             if(n == 0){
+
+                return 1;
+            }
+
+            int res = logarithmicPow(x, n/2) * logarithmicPow(x, n/2);
+
+            if(n % 2 == 1){
+
+                res *= x;
+            }
+
+            return res;
+
+           /*  if(n == 0){
 
                 return 1;
             }
@@ -13,7 +28,7 @@
                 result *= x;
             }
 
-            return result;
+            return result; */
         }
 
         public static void main(String[] args) {
